@@ -18,7 +18,6 @@ class Capture2eTest < Test::Unit::TestCase
     assert_equal(expected_path, output)
   end
 
-
   private
 
   def test_script_path
@@ -45,12 +44,6 @@ class Capture2eTest < Test::Unit::TestCase
     ENV.to_h.tap do |env|
       env['PATH'] = expected_path
     end
-  end
-
-  def windows_platform?
-    # Check if on Windows via RUBY_PLATFORM (CRuby) and RUBY_DESCRIPTION (JRuby)
-    win_platform_regex = /mingw|mswin/
-    RUBY_PLATFORM =~ win_platform_regex || RUBY_DESCRIPTION =~ win_platform_regex
   end
 
   def cmd
