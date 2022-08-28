@@ -1,5 +1,6 @@
 require 'test/unit'
 require 'fileutils'
+require 'open3'
 
 def windows_platform?
   # Check if on Windows via RUBY_PLATFORM (CRuby) and RUBY_DESCRIPTION (JRuby)
