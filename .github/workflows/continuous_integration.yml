@@ -20,5 +20,5 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run Build
-        run: run_test
+        run: run_test.cmd
 
