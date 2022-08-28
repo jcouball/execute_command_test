@@ -6,18 +6,22 @@ class Capture2eTest < Test::Unit::TestCase
     output, status = Open3.capture2e(env, cmd, unsetenv_others: false)
     output.chomp!
     assert(status.exitstatus == 0)
-    assert(output.end_with?(additional_path_element))
+    assert_equal(expected_path, output)
   end
 
   private
 
   def additional_path_element
-    "#{File::PATH_SEPARATOR}testing"
+    "testing"
+  end
+
+  def expected_path
+    [ENV['PATH'], additional_path_element].join(File::PATH_SEPARATOR)
   end
 
   def env
     ENV.to_h.tap do |env|
-      env['PATH'] = "#{env['PATH']}#{additional_path_element}"
+      env['PATH'] = expected_path
     end
   end
 
