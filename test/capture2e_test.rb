@@ -25,7 +25,13 @@ class Capture2eTest < Test::Unit::TestCase
     end
   end
 
+  def windows_platform?
+    # Check if on Windows via RUBY_PLATFORM (CRuby) and RUBY_DESCRIPTION (JRuby)
+    win_platform_regex = /mingw|mswin/
+    RUBY_PLATFORM =~ win_platform_regex || RUBY_DESCRIPTION =~ win_platform_regex
+  end
+
   def cmd
-    'echo "$PATH"'
+    windows_platform? ? 'echo %PATH%' : 'echo $PATH'
   end
 end
