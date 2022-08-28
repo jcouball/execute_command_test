@@ -28,7 +28,8 @@ if windows_platform?
   FileUtils.rm(powershell_script_file)
   FileUtils.rm(cmd_script_file)
 
-  assert_equal(0, status.exitstatus)
+  exit 1 unless status.success?
+  
   output.chomp!
   puts "Windows Shell Type: #{output}"
 end
