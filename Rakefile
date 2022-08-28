@@ -1,11 +1,12 @@
 require 'English'
+require 'open3'
 
-default_tasks = []
+require 'rake/testtask'
 
-desc 'Run Tests'
-task :test do
-  puts "Tests Successful"
+Rake::TestTask.new do |t|
+  t.libs << "test"
+  t.test_files = FileList['test/**/*.rb']
+  t.verbose = true
 end
-default_tasks << :test
 
-task default: default_tasks
+task default: :test
