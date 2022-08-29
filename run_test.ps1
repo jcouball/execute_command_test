@@ -1,7 +1,9 @@
+git config --global user.name "Test User"
+git config --global user.email "test@example.com"
+git config --global init.defaultBranch main
+
 mkdir test_repo
 cd test_repo
-git config user.name "Test User"
-git config user.email "test@example.com"
 
 git init
 
