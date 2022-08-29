@@ -27,3 +27,6 @@ jobs:
 
       - name: Git Path
         run: (get-command git).Path
+
+      - name: Run Command
+        run: run_test
