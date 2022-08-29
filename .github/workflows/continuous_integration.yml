@@ -33,3 +33,4 @@ jobs:
 
       - name: Run Command
         run: ./run_test.ps1
+        shell: pwsh
