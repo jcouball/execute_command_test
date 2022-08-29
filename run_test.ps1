@@ -6,8 +6,8 @@ mkdir test_repo
 cd test_repo
 
 git init
+git branch
 
-git checkout main
 git checkout -b branch1
 echo "branch1" > file1.txt
 echo "branch1" > file2.txt
