@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require 'fileutils'
+
 puts "SUCCESS"
 
 `git config --global user.name "Test User"`
@@ -10,6 +12,7 @@ puts "SUCCESS"
 def command(cmd)
   puts "Running: #{cmd}"
   puts `#{cmd}`
+  exit 1 unless $?.success?
 end
 
 FileUtils.mkdir_p "test_repo"
@@ -25,6 +28,7 @@ FileUtils.cd "test_repo" do
   File.write("file3.txt", "branch1")
   command('git add .')
   command('git commit -m "Add file2 and file3 on branch1"')
+  pp Dir["**/*.txt"]
 
   command('git checkout main')
 
@@ -33,11 +37,10 @@ FileUtils.cd "test_repo" do
   File.write("file5.txt", "branch2")
   command('git add .')
   command('git commit -m "Add file4 and file5 on branch2"')
+  pp Dir["**/*.txt"]
 
   command('git checkout main')
-
   command('git merge branch1 branch2 -m "Merge branch1 and branch2"')
-
   pp Dir["**/*.txt"]
 end
 
