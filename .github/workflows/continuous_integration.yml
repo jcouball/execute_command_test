@@ -33,4 +33,3 @@ jobs:
 
       - name: Run Command
         run: run_test
-        shell: pwsh
