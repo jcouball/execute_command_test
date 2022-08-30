@@ -2,15 +2,45 @@
 
 puts "SUCCESS"
 
-# git config --global user.name "Test User"
-# git config --global user.email "test@example.com"
+`git config --global user.name "Test User"`
+`git config --global user.email "test@example.com"`
 
-# git config --global init.defaultBranch main
+`git config --global init.defaultBranch main`
 
-# mkdir test_repo
-# cd test_repo
+def command(cmd)
+  puts "Running: #{cmd}"
+  puts `#{cmd}`
+end
 
-# git init
+FileUtils.mkdir_p "test_repo"
+
+FileUtils.cd "test_repo" do
+  command('git init')
+  File.write("file1.txt", "main")
+  command('git add .')
+  command('git commit -m "Add file1 on main"')
+
+  command('git checkout -b branch1')
+  File.write("file2.txt", "branch1")
+  File.write("file3.txt", "branch1")
+  command('git add .')
+  command('git commit -m "Add file2 and file3 on branch1"')
+
+  command('git checkout main')
+
+  command('git checkout -b branch2')
+  File.write("file4.txt", "branch2")
+  File.write("file5.txt", "branch2")
+  command('git add .')
+  command('git commit -m "Add file4 and file5 on branch2"')
+
+  command('git checkout main')
+
+  command('git merge branch1 branch2 -m "Merge branch1 and branch2"')
+
+  pp Dir["**/*.txt"]
+end
+
 
 # echo "main" > file1.txt
 # git add file1.txt
