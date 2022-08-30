@@ -32,5 +32,5 @@ jobs:
         run: git --version
 
       - name: Run Command
-        run: ./run_test.ps1
+        run: run_test
         shell: pwsh
