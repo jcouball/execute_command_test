@@ -32,4 +32,4 @@ jobs:
         run: git --version
 
       - name: Run Command
-        run: run_test
+        run: bundle exec ruby run_test
