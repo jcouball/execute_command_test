@@ -12,7 +12,7 @@ puts "SUCCESS"
 
 def command(cmd)
   puts "Running: #{cmd}"
-  output, status = Open3.capture2e(cmd)
+  output, status = Open3.capture2e("#{cmd} 2>&1")
   puts output
   exit 1 unless status.success?
 end
@@ -45,26 +45,3 @@ FileUtils.cd "test_repo" do
   command('git merge branch1 branch2 -m "Merge branch1 and branch2"')
   pp Dir["**/*.txt"]
 end
-
-
-# echo "main" > file1.txt
-# git add file1.txt
-# git commit -m "Add file1 on main"
-
-# git checkout -b branch1
-# echo "branch1" > file2.txt
-# echo "branch1" > file3.txt
-# git add file2.txt file3.txt
-# git commit -m "Add file2 and file3 on branch1"
-
-# git checkout main
-# git checkout -b branch2
-# echo "branch2" > file4.txt
-# echo "branch2" > file5.txt
-# git add file4.txt file5.txt
-# git commit -m "Add file4 and file5 on branch2"
-
-# git checkout main
-# git merge branch1 branch2 -m "Merge branch1 and branch2"
-
-# dir *.txt
