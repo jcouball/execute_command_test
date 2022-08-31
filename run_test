@@ -11,8 +11,9 @@ puts "SUCCESS"
 
 def command(cmd)
   puts "Running: #{cmd}"
-  puts `#{cmd} 2>&1`
-  exit 1 unless $?.success?
+  output, status = Open3.capture2e(cmd)
+  puts output
+  exit 1 unless status.success?
 end
 
 FileUtils.mkdir_p "test_repo"
